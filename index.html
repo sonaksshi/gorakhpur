@@ -34,22 +34,46 @@
     #flash.on { opacity: 1; }
 
     /* ── SCREEN 1: LANDING ── */
-    <div id="screen-landing">
-  <div class="landing-center">
-    <div class="text-block block-1">
-      <img src="GP_E.svg" alt="">
-    </div>
+   /* ── SCREEN 1: LANDING ── */
 
-    <div class="text-block block-2">
-      <img src="GP_H.svg" alt="">
-    </div>
+#screen-landing {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease;
+}
 
-    <div class="text-block block-3" id="portal-btn">
-      <img src="GP_U.svg" alt="">
-    </div>
-  </div>
-</div>
- 
+#screen-landing.out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.landing-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.text-block img {
+  display: block;
+  max-width: 520px;
+  width: auto;
+  height: auto;
+}
+
+.block-3 {
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.block-3:hover {
+  transform: translateY(-4px);
+  opacity: 0.75;
+}
 
     /* ── SCREEN 2: GORAKHPUR ── */
     #screen-gorakhpur {
@@ -253,25 +277,20 @@
 
 <!-- SCREEN 1 -->
 <div id="screen-landing">
-  <div class="landing-left">
-    <div class="landing-wordmark">Gorakhpur / Archive</div>
-    <div class="landing-title">Gora<em>kh</em><br>pur</div>
-    <div class="landing-footer-left">27°28'N 83°22'E<br>Uttar Pradesh · India<br>Est. 1400s</div>
-  </div>
-  <div class="landing-right">
-    <div class="portal-zone" id="portal-btn">
-      <div class="portal-hint">_ enter</div>
-      <div class="scene">
-        <div class="cube">
-          <div class="face face-front"></div>
-          <div class="face face-back"></div>
-          <div class="face face-right"></div>
-          <div class="face face-left"></div>
-          <div class="face face-top"></div>
-          <div class="face face-bottom"></div>
-        </div>
-      </div>
+  <div class="landing-center">
+
+    <div class="text-block">
+      <img src="GP_E.svg" alt="">
     </div>
+
+    <div class="text-block">
+      <img src="GP_H.svg" alt="">
+    </div>
+
+    <div class="text-block block-3" id="portal-btn">
+      <img src="GP_U.svg" alt="">
+    </div>
+
   </div>
 </div>
 
