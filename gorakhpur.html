@@ -34,131 +34,22 @@
     #flash.on { opacity: 1; }
 
     /* ── SCREEN 1: LANDING ── */
-    #screen-landing {
-      position: fixed; inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      transition: opacity 0.5s ease;
-    }
-    #screen-landing.out { opacity: 0; pointer-events: none; }
+    <div id="screen-landing">
+  <div class="landing-center">
+    <div class="text-block block-1">
+      <img src="block1.png" alt="">
+    </div>
 
-    .landing-left {
-      border-right: 1px solid var(--line);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px;
-    }
+    <div class="text-block block-2">
+      <img src="block2.png" alt="">
+    </div>
 
-    .landing-wordmark {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 11px;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .landing-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(52px, 8vw, 100px);
-      line-height: 0.9;
-      letter-spacing: -4px;
-      color: var(--ink);
-    }
-
-    .landing-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .landing-footer-left {
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 2px;
-      line-height: 1.9;
-    }
-
-    .landing-right {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .landing-right::before {
-      content: '';
-      position: absolute;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-    }
-    .landing-right::after {
-      content: '';
-      position: absolute;
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-    }
-
-    .portal-zone {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-      cursor: pointer;
-      z-index: 1;
-      user-select: none;
-    }
-
-    .portal-hint {
-      font-size: 9px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--muted);
-      animation: blink 2.4s step-end infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-    .scene { width: 60px; height: 60px; perspective: 260px; }
-    .cube {
-      width: 60px; height: 60px;
-      position: relative;
-      transform-style: preserve-3d;
-      animation: spin 9s linear infinite;
-    }
-    .portal-zone:hover .cube { animation-play-state: paused; }
-    @keyframes spin {
-      from { transform: rotateX(22deg) rotateY(0deg); }
-      to   { transform: rotateX(22deg) rotateY(360deg); }
-    }
-    .face {
-      position: absolute;
-      width: 60px; height: 60px;
-      border: 1.5px solid var(--ink);
-    }
-    .face-front::before {
-      content: ''; position: absolute;
-      top: 50%; left: 0; right: 0; height: 1.5px;
-      background: var(--ink); transform: translateY(-50%);
-    }
-    .face-front::after {
-      content: ''; position: absolute;
-      left: 50%; top: 0; bottom: 0; width: 1.5px;
-      background: var(--ink); transform: translateX(-50%);
-    }
-    .face-front  { transform: translateZ(30px); }
-    .face-back   { transform: rotateY(180deg) translateZ(30px); }
-    .face-right  { transform: rotateY(90deg)  translateZ(30px); }
-    .face-left   { transform: rotateY(-90deg) translateZ(30px); }
-    .face-top    { transform: rotateX(90deg)  translateZ(30px); }
-    .face-bottom { transform: rotateX(-90deg) translateZ(30px); }
-
-    .portal-zone:hover .face { border-color: var(--accent); }
-    .portal-zone:hover .face-front::before,
-    .portal-zone:hover .face-front::after { background: var(--accent); }
+    <div class="text-block block-3" id="portal-btn">
+      <img src="block3.png" alt="">
+    </div>
+  </div>
+</div>
+ 
 
     /* ── SCREEN 2: GORAKHPUR ── */
     #screen-gorakhpur {
