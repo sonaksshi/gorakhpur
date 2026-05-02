@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gorakhpur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f0ede6;
+      --ink: #0f0f0f;
+      --muted: #888;
+      --accent: #c8401a;
+      --line: rgba(15,15,15,0.12);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Space Mono', monospace;
+      overflow: hidden;
+    }
+
+    #flash {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      opacity: 0; pointer-events: none;
+      z-index: 9999;
+      transition: opacity 0.12s;
+    }
+    #flash.on { opacity: 1; }
+
+    /* ── SCREEN 1: LANDING ── */
+    #screen-landing {
+      position: fixed; inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      transition: opacity 0.5s ease;
+    }
+    #screen-landing.out { opacity: 0; pointer-events: none; }
+
+    .landing-left {
+      border-right: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px;
+    }
+
+    .landing-wordmark {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .landing-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(52px, 8vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -4px;
+      color: var(--ink);
+    }
+
+    .landing-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .landing-footer-left {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      line-height: 1.9;
+    }
+
+    .landing-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .landing-right::before {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+    }
+    .landing-right::after {
+      content: '';
+      position: absolute;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+    }
+
+    .portal-zone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      z-index: 1;
+      user-select: none;
+    }
+
+    .portal-hint {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      animation: blink 2.4s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .scene { width: 60px; height: 60px; perspective: 260px; }
+    .cube {
+      width: 60px; height: 60px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: spin 9s linear infinite;
+    }
+    .portal-zone:hover .cube { animation-play-state: paused; }
+    @keyframes spin {
+      from { transform: rotateX(22deg) rotateY(0deg); }
+      to   { transform: rotateX(22deg) rotateY(360deg); }
+    }
+    .face {
+      position: absolute;
+      width: 60px; height: 60px;
+      border: 1.5px solid var(--ink);
+    }
+    .face-front::before {
+      content: ''; position: absolute;
+      top: 50%; left: 0; right: 0; height: 1.5px;
+      background: var(--ink); transform: translateY(-50%);
+    }
+    .face-front::after {
+      content: ''; position: absolute;
+      left: 50%; top: 0; bottom: 0; width: 1.5px;
+      background: var(--ink); transform: translateX(-50%);
+    }
+    .face-front  { transform: translateZ(30px); }
+    .face-back   { transform: rotateY(180deg) translateZ(30px); }
+    .face-right  { transform: rotateY(90deg)  translateZ(30px); }
+    .face-left   { transform: rotateY(-90deg) translateZ(30px); }
+    .face-top    { transform: rotateX(90deg)  translateZ(30px); }
+    .face-bottom { transform: rotateX(-90deg) translateZ(30px); }
+
+    .portal-zone:hover .face { border-color: var(--accent); }
+    .portal-zone:hover .face-front::before,
+    .portal-zone:hover .face-front::after { background: var(--accent); }
+
+    /* ── SCREEN 2: GORAKHPUR ── */
+    #screen-gorakhpur {
+      position: fixed; inset: 0;
+      background: #fff;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #screen-gorakhpur.active {
+      display: flex;
+      animation: fadein 0.5s ease;
+    }
+    @keyframes fadein { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 50px;
+      border-bottom: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    .nav-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+    .nav-back {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .nav-back:hover { color: var(--ink); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* LEFT PANEL */
+    .info-panel {
+      border-right: 1px solid var(--line);
+      overflow-y: auto;
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-hero { margin-bottom: 44px; }
+
+    .eyebrow {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .info-heading {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 30px;
+      line-height: 1.0;
+      letter-spacing: -1px;
+    }
+    .info-heading span { color: var(--accent); font-style: italic; }
+
+    .info-block {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+    }
+    .info-block-num {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .info-block-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .info-block-body {
+      font-size: 11.5px;
+      line-height: 1.95;
+      color: #444;
+    }
+
+    /* RIGHT PANEL — archive */
+    .archive-panel {
+      overflow-y: auto;
+      background: #fafaf8;
+    }
+
+    .archive-inner {
+      padding: 40px 52px 80px;
+    }
+
+    .archive-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 20px;
+      margin-bottom: 48px;
+    }
+    .archive-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .archive-count {
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+
+    /* Story rows */
+    .story-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      transition: padding-left 0.2s ease;
+    }
+    .story-row:first-child { border-top: 1px solid var(--line); }
+    .story-row:hover { padding-left: 8px; }
+    .story-row:hover .story-illus-wrap svg { opacity: 1; }
+    .story-row:hover .row-arrow { opacity: 1; transform: translateX(0); }
+
+    .story-illus-wrap {
+      width: 72px;
+      height: 54px;
+      flex-shrink: 0;
+    }
+    .story-illus-wrap svg {
+      width: 100%;
+      height: 100%;
+      opacity: 0.65;
+      transition: opacity 0.2s;
+    }
+
+    .story-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .row-date {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .row-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .row-tag {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .row-arrow {
+      font-size: 13px;
+      color: var(--ink);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: opacity 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="flash"></div>
+
+<!-- SCREEN 1 -->
+<div id="screen-landing">
+  <div class="landing-left">
+    <div class="landing-wordmark">Gorakhpur / Archive</div>
+    <div class="landing-title">Gora<em>kh</em><br>pur</div>
+    <div class="landing-footer-left">27°28'N 83°22'E<br>Uttar Pradesh · India<br>Est. 1400s</div>
+  </div>
+  <div class="landing-right">
+    <div class="portal-zone" id="portal-btn">
+      <div class="portal-hint">_ enter</div>
+      <div class="scene">
+        <div class="cube">
+          <div class="face face-front"></div>
+          <div class="face face-back"></div>
+          <div class="face face-right"></div>
+          <div class="face face-left"></div>
+          <div class="face face-top"></div>
+          <div class="face face-bottom"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen-gorakhpur">
+  <nav class="nav">
+    <span class="nav-name">Gorakhpur</span>
+    <button class="nav-back" id="back-btn">← exit</button>
+  </nav>
+
+  <div class="layout">
+    <aside class="info-panel">
+      <div class="info-hero">
+        <div class="eyebrow">Living archive</div>
+        <h1 class="info-heading">Gora<span>khpur</span></h1>
+      </div>
+      <div class="info-block">
+        <div class="info-block-num">01</div>
+        <div class="info-block-title">The project</div>
+        <p class="info-block-body">An ongoing collection of stories, photographs, and documents from Gorakhpur's long and layered past. People, places, and the slow churn of history — gathered so they are not lost.</p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-num">02</div>
+        <div class="info-block-title">How to read</div>
+        <p class="info-block-body">Click any illustration to open its story. Each entry is drawn from oral histories, old newspapers, and personal collections submitted by residents.</p>
+      </div>
+      <div class="info-block">
+        <div class="info-block-num">03</div>
+        <div class="info-block-title">Contribute</div>
+        <p class="info-block-body">Have a photograph, document, or story? This archive is built by the community it documents. Submissions are open.</p>
+      </div>
+    </aside>
+
+    <main class="archive-panel">
+      <div class="archive-inner">
+        <div class="archive-bar">
+          <span class="archive-label">Archive</span>
+          <span class="archive-count" id="story-count"></span>
+        </div>
+        <div id="story-list"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+const stories = [
+  {
+    date: "1923", title: "The Railway Station at Dawn", tag: "infrastructure",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="28" width="56" height="14" stroke="#0f0f0f" stroke-width="1"/>
+      <rect x="16" y="20" width="16" height="8" stroke="#0f0f0f" stroke-width="1"/>
+      <rect x="40" y="22" width="12" height="6" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="20" cy="42" r="4" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="52" cy="42" r="4" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="0" y1="46" x2="72" y2="46" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="8"  y1="46" x2="8"  y2="50" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="22" y1="46" x2="22" y2="50" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="36" y1="46" x2="36" y2="50" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="50" y1="46" x2="50" y2="50" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="64" y1="46" x2="64" y2="50" stroke="#0f0f0f" stroke-width="0.8"/>
+      <circle cx="9" cy="24" r="2" fill="#c8401a"/>
+      <line x1="9" y1="22" x2="9" y2="18" stroke="#0f0f0f" stroke-width="0.8"/>
+    </svg>`
+  },
+  {
+    date: "1947", title: "Partition Memories, Rapti Riverbank", tag: "oral history",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 36 Q18 26 36 36 Q54 46 72 36" stroke="#0f0f0f" stroke-width="1"/>
+      <path d="M0 42 Q18 32 36 42 Q54 52 72 42" stroke="#0f0f0f" stroke-width="1"/>
+      <path d="M0 48 Q18 38 36 48 Q54 58 72 48" stroke="#0f0f0f" stroke-width="0.5" stroke-dasharray="3 2"/>
+      <line x1="34" y1="34" x2="38" y2="4" stroke="#0f0f0f" stroke-width="1"/>
+      <path d="M38 4 Q50 10 38 20" stroke="#0f0f0f" stroke-width="0.8" fill="none"/>
+      <polygon points="34,34 30,28 38,28" fill="#0f0f0f"/>
+      <circle cx="22" cy="14" r="3" stroke="#0f0f0f" stroke-width="0.8"/>
+      <circle cx="50" cy="10" r="2" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="22" y1="17" x2="22" y2="32" stroke="#0f0f0f" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <circle cx="36" cy="4" r="1.5" fill="#c8401a"/>
+    </svg>`
+  },
+  {
+    date: "1962", title: "The Old Gorakhnath Temple Fair", tag: "ritual",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="36,4 46,20 26,20" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <rect x="20" y="20" width="32" height="26" stroke="#0f0f0f" stroke-width="1"/>
+      <rect x="30" y="34" width="12" height="12" stroke="#0f0f0f" stroke-width="1"/>
+      <rect x="23" y="26" width="7" height="7" stroke="#0f0f0f" stroke-width="0.8"/>
+      <rect x="42" y="26" width="7" height="7" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="20" y1="46" x2="52" y2="46" stroke="#0f0f0f" stroke-width="1.5"/>
+      <circle cx="36" cy="12" r="1.5" fill="#c8401a"/>
+      <line x1="32" y1="4" x2="40" y2="4" stroke="#c8401a" stroke-width="1"/>
+      <circle cx="14" cy="30" r="4" stroke="#0f0f0f" stroke-width="0.8"/>
+      <circle cx="58" cy="30" r="4" stroke="#0f0f0f" stroke-width="0.8"/>
+    </svg>`
+  },
+  {
+    date: "1975", title: "Flood Season on Betiahata Road", tag: "climate",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="18" width="18" height="20" stroke="#0f0f0f" stroke-width="1"/>
+      <polygon points="10,18 19,8 28,18" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <rect x="44" y="22" width="14" height="16" stroke="#0f0f0f" stroke-width="1"/>
+      <polygon points="44,22 51,15 58,22" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <rect x="14" y="28" width="5" height="10" stroke="#0f0f0f" stroke-width="0.8"/>
+      <path d="M0 42 Q9 36 18 42 Q27 48 36 42 Q45 36 54 42 Q63 48 72 42" stroke="#0f0f0f" stroke-width="1.2"/>
+      <path d="M0 49 Q9 43 18 49 Q27 55 36 49 Q45 43 54 49 Q63 55 72 49" stroke="#0f0f0f" stroke-width="0.7"/>
+      <circle cx="5" cy="16" r="2" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="5" y1="18" x2="5" y2="24" stroke="#0f0f0f" stroke-width="0.8" stroke-dasharray="2 2"/>
+      <circle cx="36" cy="38" r="1.5" fill="#c8401a"/>
+    </svg>`
+  },
+  {
+    date: "1984", title: "A Weaver's Quarter, Now Gone", tag: "craft",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="8" width="56" height="40" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="48" stroke="#0f0f0f" stroke-width="0.5"/>
+      <line x1="28" y1="8" x2="28" y2="48" stroke="#0f0f0f" stroke-width="0.5"/>
+      <line x1="38" y1="8" x2="38" y2="48" stroke="#0f0f0f" stroke-width="0.5"/>
+      <line x1="48" y1="8" x2="48" y2="48" stroke="#0f0f0f" stroke-width="0.5"/>
+      <line x1="58" y1="8" x2="58" y2="48" stroke="#0f0f0f" stroke-width="0.5"/>
+      <line x1="8" y1="16" x2="64" y2="16" stroke="#c8401a" stroke-width="1.2"/>
+      <line x1="8" y1="24" x2="64" y2="24" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="8" y1="32" x2="64" y2="32" stroke="#c8401a" stroke-width="1.2"/>
+      <line x1="8" y1="40" x2="64" y2="40" stroke="#0f0f0f" stroke-width="0.8"/>
+      <circle cx="8"  cy="16" r="2" fill="#c8401a"/>
+      <circle cx="64" cy="32" r="2" fill="#c8401a"/>
+    </svg>`
+  },
+  {
+    date: "1991", title: "The Cinema Halls of Golghar", tag: "culture",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="10" width="60" height="38" stroke="#0f0f0f" stroke-width="1"/>
+      <rect x="12" y="16" width="48" height="26" stroke="#0f0f0f" stroke-width="0.8"/>
+      <polygon points="26,20 26,38 50,29" fill="#0f0f0f"/>
+      <line x1="28" y1="48" x2="28" y2="54" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="44" y1="48" x2="44" y2="54" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="18" cy="6" r="2" fill="#c8401a"/>
+      <circle cx="36" cy="6" r="2" fill="#c8401a"/>
+      <circle cx="54" cy="6" r="2" fill="#c8401a"/>
+      <line x1="18" y1="6" x2="18" y2="10" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="36" y1="6" x2="36" y2="10" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="54" y1="6" x2="54" y2="10" stroke="#0f0f0f" stroke-width="0.8"/>
+    </svg>`
+  },
+  {
+    date: "2001", title: "Monsoon Portraits", tag: "photography",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M14 22 Q22 10 34 18 Q36 6 48 12 Q58 8 62 20 Q70 20 67 30 Q65 36 57 34 L16 34 Q7 34 9 24 Q11 18 14 22Z" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="20" y1="38" x2="16" y2="50" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="30" y1="38" x2="26" y2="50" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="40" y1="38" x2="36" y2="50" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="50" y1="38" x2="46" y2="50" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="60" y1="38" x2="56" y2="50" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="18" cy="52" r="1.5" fill="#0f0f0f"/>
+      <circle cx="28" cy="52" r="1.5" fill="#0f0f0f"/>
+      <circle cx="38" cy="52" r="1.5" fill="#0f0f0f"/>
+      <circle cx="48" cy="52" r="1.5" fill="#c8401a"/>
+      <circle cx="58" cy="52" r="1.5" fill="#0f0f0f"/>
+    </svg>`
+  },
+  {
+    date: "2009", title: "The Rickshaw Pullers' Guild", tag: "labour",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="16" cy="42" r="8" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="16" cy="42" r="2.5" fill="#0f0f0f"/>
+      <circle cx="56" cy="44" r="6" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="56" cy="44" r="2" fill="#0f0f0f"/>
+      <line x1="16" y1="42" x2="56" y2="44" stroke="#0f0f0f" stroke-width="1.5"/>
+      <polygon points="24,38 46,36 52,44 20,42" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <line x1="46" y1="36" x2="48" y2="24" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="48" y1="24" x2="24" y2="26" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="24" y1="26" x2="24" y2="38" stroke="#0f0f0f" stroke-width="1"/>
+      <line x1="56" y1="44" x2="64" y2="36" stroke="#0f0f0f" stroke-width="1.2"/>
+      <line x1="64" y1="36" x2="68" y2="28" stroke="#0f0f0f" stroke-width="1"/>
+      <circle cx="36" cy="28" r="4" stroke="#0f0f0f" stroke-width="0.8"/>
+      <circle cx="36" cy="28" r="1.5" fill="#c8401a"/>
+    </svg>`
+  },
+  {
+    date: "2015", title: "Old City Bazaar, Before the Flyover", tag: "urban change",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="26" width="18" height="20" stroke="#0f0f0f" stroke-width="1"/>
+      <path d="M2 26 Q13 18 24 26" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <rect x="26" y="28" width="16" height="18" stroke="#0f0f0f" stroke-width="1"/>
+      <path d="M24 28 Q34 20 44 28" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <rect x="46" y="24" width="20" height="22" stroke="#0f0f0f" stroke-width="1"/>
+      <path d="M44 24 Q56 14 68 24" stroke="#0f0f0f" stroke-width="1" fill="none"/>
+      <rect x="8" y="36" width="5" height="10" stroke="#0f0f0f" stroke-width="0.8"/>
+      <rect x="30" y="38" width="5" height="8" stroke="#0f0f0f" stroke-width="0.8"/>
+      <rect x="52" y="34" width="7" height="12" stroke="#0f0f0f" stroke-width="0.8"/>
+      <line x1="0" y1="46" x2="72" y2="46" stroke="#0f0f0f" stroke-width="1.5"/>
+      <circle cx="13" cy="22" r="1.5" fill="#c8401a"/>
+      <circle cx="34" cy="24" r="1.5" fill="#c8401a"/>
+      <circle cx="56" cy="20" r="1.5" fill="#c8401a"/>
+    </svg>`
+  },
+  {
+    date: "2019", title: "Sugarcane Season, Sahjanwa", tag: "agriculture",
+    svg: `<svg viewBox="0 0 72 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="18" y1="52" x2="22" y2="8"  stroke="#0f0f0f" stroke-width="1.5"/>
+      <line x1="30" y1="52" x2="33" y2="6"  stroke="#0f0f0f" stroke-width="1.5"/>
+      <line x1="42" y1="52" x2="44" y2="10" stroke="#0f0f0f" stroke-width="1.5"/>
+      <line x1="54" y1="52" x2="56" y2="8"  stroke="#0f0f0f" stroke-width="1.5"/>
+      <path d="M22 18 Q30 12 36 20" stroke="#0f0f0f" stroke-width="0.8" fill="none"/>
+      <path d="M33 16 Q42 8  46 18" stroke="#0f0f0f" stroke-width="0.8" fill="none"/>
+      <path d="M18 34 Q12 26 20 20" stroke="#0f0f0f" stroke-width="0.8" fill="none"/>
+      <path d="M44 26 Q54 20 58 30" stroke="#0f0f0f" stroke-width="0.8" fill="none"/>
+      <line x1="4"  y1="52" x2="68" y2="52" stroke="#0f0f0f" stroke-width="1.2"/>
+      <circle cx="22" cy="8"  r="2" fill="#c8401a"/>
+      <circle cx="33" cy="6"  r="2" fill="#c8401a"/>
+      <circle cx="44" cy="10" r="2" fill="#c8401a"/>
+      <circle cx="56" cy="8"  r="2" fill="#c8401a"/>
+    </svg>`
+  },
+];
+
+/* build list */
+const list = document.getElementById('story-list');
+document.getElementById('story-count').textContent = `${stories.length} entries`;
+
+stories.forEach(s => {
+  const row = document.createElement('div');
+  row.className = 'story-row';
+  row.innerHTML = `
+    <div class="story-illus-wrap">${s.svg}</div>
+    <div class="story-text">
+      <div class="row-date">${s.date}</div>
+      <div class="row-title">${s.title}</div>
+      <div class="row-tag">${s.tag}</div>
+    </div>
+    <div class="row-arrow">→</div>`;
+  row.addEventListener('click', () => {
+    // window.location.href = `stories/${s.tag.replace(/ /g,'-')}.html`;
+    alert(`"${s.title}"\n\nLink your story page here.`);
+  });
+  list.appendChild(row);
+});
+
+/* nav */
+const flash = document.getElementById('flash');
+const landing = document.getElementById('screen-landing');
+const gorakhpur = document.getElementById('screen-gorakhpur');
+
+function go(cb) {
+  flash.classList.add('on');
+  setTimeout(() => { cb(); flash.classList.remove('on'); }, 140);
+}
+
+document.getElementById('portal-btn').addEventListener('click', () => go(() => {
+  landing.classList.add('out');
+  setTimeout(() => landing.style.display = 'none', 500);
+  gorakhpur.classList.add('active');
+}));
+
+document.getElementById('back-btn').addEventListener('click', () => go(() => {
+  gorakhpur.classList.remove('active');
+  landing.style.display = '';
+  landing.classList.remove('out');
+}));
+</script>
+</body>
+</html>
