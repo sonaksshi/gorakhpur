@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gorakhpur archives</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Cormorant+Garamond:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -17,23 +15,23 @@
 }
 
 html, body {
-  width: 100%;
-  min-height: 100%;
   background: #fff;
   color: #111;
   font-family: 'Inter', sans-serif;
+  min-height: 100%;
 }
 
 body {
   padding: 42px 56px 80px;
 }
 
-/* top nav */
-.nav {
+/* NAV */
+
+nav {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
 }
 
 .nav-left {
@@ -45,8 +43,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   cursor: pointer;
-  letter-spacing: -0.02em;
-  opacity: 0.9;
+  opacity: 0.85;
   transition: opacity 0.2s ease;
 }
 
@@ -56,18 +53,21 @@ body {
 
 .about {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
+  font-size: 30px;
   font-style: italic;
   cursor: pointer;
 }
 
-/* archive grid */
-.archive-grid {
+/* GRID */
+
+.grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 48px;
-  row-gap: 72px;
+  column-gap: 56px;
+  row-gap: 84px;
 }
+
+/* ENTRY */
 
 .entry {
   cursor: pointer;
@@ -75,159 +75,53 @@ body {
 
 .entry img {
   width: 100%;
-  max-width: 140px;
+  max-width: 150px;
   margin-bottom: 18px;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .entry:hover img {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   opacity: 0.72;
 }
 
-.entry-title {
-  font-size: 13px;
+.year {
+  font-size: 11px;
+  opacity: 0.45;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 14px;
   line-height: 1.45;
-  max-width: 160px;
+  max-width: 170px;
   font-weight: 400;
 }
 
-.entry-meta {
-  margin-top: 6px;
+.tag {
+  margin-top: 7px;
   font-size: 11px;
-  opacity: 0.5;
-  letter-spacing: 0.03em;
-}
-<!-- :root{
-  --bg:#fafaf7;
-  --ink:#111;
-  --muted:#7d7d7d;
-  --line:#e8e8e2;
-  --accent:#c8401a;
+  opacity: 0.4;
+  font-style: italic;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+/* RESPONSIVE */
 
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Space Mono', monospace;
-  min-height:100vh;
-}
-
-/* top nav */
-
-nav{
-  width:100%;
-  padding:42px 58px 26px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.nav-left{
-  display:flex;
-  gap:42px;
-}
-
-.nav-item{
-  font-size:14px;
-  cursor:pointer;
-  position:relative;
-}
-
-.nav-item.active{
-  padding:8px 14px;
-  border:1px dashed #d8d8d1;
-}
-
-.about{
-  font-style:italic;
-  cursor:pointer;
-}
-
-/* archive grid */
-
-.archive{
-  padding:30px 58px 80px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap:72px 48px;
-}
-
-/* each item */
-
-.entry{
-  cursor:pointer;
-  transition:transform .25s ease;
-}
-
-.entry:hover{
-  transform:translateY(-8px);
-}
-
-.illus{
-  width:100%;
-  height:150px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:16px;
-}
-
-.illus img{
-  max-width:150px;
-  max-height:130px;
-  object-fit:contain;
-}
-
-.meta{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.year{
-  font-size:10px;
-  letter-spacing:2px;
-  color:var(--muted);
-  text-transform:uppercase;
-}
-
-.title{
-  font-family:'Syne', sans-serif;
-  font-size:15px;
-  line-height:1.35;
-}
-
-.tag{
-  font-size:10px;
-  color:var(--muted);
-  font-style:italic;
-  letter-spacing:1px;
-}
-
-/* responsive */
-
-@media(max-width:1100px){
-  .grid{
-    grid-template-columns:repeat(3,1fr);
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media(max-width:800px){
-  .grid{
-    grid-template-columns:repeat(2,1fr);
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  body {
+    padding: 28px;
   }
 }
--->
 </style>
 </head>
 <body>
@@ -235,84 +129,57 @@ nav{
 <nav>
   <div class="nav-left">
     <div class="nav-item">history</div>
-    <div class="nav-item active">culture</div>
+    <div class="nav-item">culture</div>
     <div class="nav-item">ecosystem</div>
   </div>
 
   <div class="about">about</div>
 </nav>
 
-<section class="archive">
-  <div class="grid">
+<div class="grid">
 
-    <div class="entry">
-      <div class="illus">
-        <img src="Group 1.svg" alt="">
-      </div>
-      <div class="meta">
-        <div class="year">1923</div>
-        <div class="title">Akbar's Mint in Gorakhpur</div>
-        <div class="tag"></div> 
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="illus">
-        <img src="entry2.svg" alt="">
-      </div>
-      <div class="meta">
-        <div class="year">1947</div>
-        <div class="title">Rapti Riverbank</div>
-        <div class="tag">oral history</div>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="illus">
-        <img src="entry3.svg" alt="">
-      </div>
-      <div class="meta">
-        <div class="year">1962</div>
-        <div class="title">Temple Fair</div>
-        <div class="tag">ritual</div>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="illus">
-        <img src="entry4.svg" alt="">
-      </div>
-      <div class="meta">
-        <div class="year">1975</div>
-        <div class="title">Flood Season</div>
-        <div class="tag">climate</div>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="illus">
-        <img src="entry5.svg" alt="">
-      </div>
-      <div class="meta">
-        <div class="year">1984</div>
-        <div class="title">Weaver's Quarter</div>
-        <div class="tag">craft</div>
-      </div>
-    </div>
-
-    <div class="entry">
-      <div class="illus">
-        <img src="entry6.svg" alt="">
-      </div>
-      <div class="meta">
-        <div class="year">1991</div>
-        <div class="title">Cinema Halls</div>
-        <div class="tag">culture</div>
-      </div>
-    </div>
-
+  <div class="entry">
+    <img src="Group 1.svg" alt="">
+    <div class="year">1923</div>
+    <div class="title">Akbar's Mint in Gorakhpur</div>
   </div>
-</section>
+
+  <div class="entry">
+    <img src="entry2.svg" alt="">
+    <div class="year">1947</div>
+    <div class="title">Rapti Riverbank</div>
+    <div class="tag">oral history</div>
+  </div>
+
+  <div class="entry">
+    <img src="entry3.svg" alt="">
+    <div class="year">1962</div>
+    <div class="title">Temple Fair</div>
+    <div class="tag">ritual</div>
+  </div>
+
+  <div class="entry">
+    <img src="entry4.svg" alt="">
+    <div class="year">1975</div>
+    <div class="title">Flood Season</div>
+    <div class="tag">climate</div>
+  </div>
+
+  <div class="entry">
+    <img src="entry5.svg" alt="">
+    <div class="year">1984</div>
+    <div class="title">Weaver's Quarter</div>
+    <div class="tag">craft</div>
+  </div>
+
+  <div class="entry">
+    <img src="entry6.svg" alt="">
+    <div class="year">1991</div>
+    <div class="title">Cinema Halls</div>
+    <div class="tag">memory</div>
+  </div>
+
+</div>
 
 </body>
 </html>
