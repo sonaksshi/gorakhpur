@@ -3,66 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gorakhpur archives</title>
+<title>Gorakhpur Archives</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Betania+Patmos+In&family=Playwrite+BR:wght@100..400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+BR:wght@100..400&family=Cormorant+Garamond:ital,wght@0,400;1,500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-  
-  .playwrite-br-<uniquifier> {
-  font-family: "Playwrite BR", cursive;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
 
-  html, body {
-  background: #fff;
+html, body {
+  background: #ffffff;
   color: #111;
   min-height: 100%;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  padding: 42px 56px 80px;
+  padding: 48px 56px 100px;
+}
+
+/* TITLE */
+
+.hero-title {
+  font-family: "Playwrite BR", cursive;
+  font-weight: 200;
+  font-size: 4.8rem;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 80px;
 }
 
 /* NAV */
-<div class="hero-title">Welcome to Gorakhpur</div>
-  .hero-title {
-  margin-bottom: 70px;
-}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 72px;
+  margin-bottom: 90px;
 }
 
 .nav-left {
   display: flex;
-  gap: 34px;
+  gap: 36px;
 }
 
 .nav-item {
   font-size: 14px;
-  font-weight: 400;
   cursor: pointer;
-  opacity: 0.85;
+  opacity: 0.75;
   transition: opacity 0.2s ease;
 }
 
 .nav-item:hover {
-  opacity: 0.45;
+  opacity: 1;
 }
 
 .about {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 30px;
   font-style: italic;
+  font-size: 28px;
   cursor: pointer;
 }
 
@@ -71,8 +73,7 @@ nav {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 56px;
-  row-gap: 84px;
+  gap: 90px 56px;
 }
 
 /* ENTRY */
@@ -83,31 +84,30 @@ nav {
 
 .entry img {
   width: 100%;
-  max-width: 150px;
-  margin-bottom: 18px;
+  max-width: 145px;
+  margin-bottom: 20px;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .entry:hover img {
   transform: translateY(-4px);
-  opacity: 0.72;
+  opacity: 0.75;
 }
 
 .year {
   font-size: 11px;
   opacity: 0.45;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .title {
   font-size: 14px;
-  line-height: 1.45;
-  max-width: 170px;
-  font-weight: 400;
+  line-height: 1.5;
+  max-width: 180px;
 }
 
 .tag {
-  margin-top: 7px;
+  margin-top: 8px;
   font-size: 11px;
   opacity: 0.4;
   font-style: italic;
@@ -122,17 +122,24 @@ nav {
 }
 
 @media (max-width: 760px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  body {
+    padding: 32px;
   }
 
-  body {
-    padding: 28px;
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 36px;
+  }
+
+  .hero-title {
+    font-size: 3rem;
   }
 }
 </style>
 </head>
 <body>
+
+<div class="hero-title">Welcome to Gorakhpur</div>
 
 <nav>
   <div class="nav-left">
@@ -148,8 +155,8 @@ nav {
 
   <div class="entry">
     <img src="Group 1.svg" alt="">
-    <div class="year">1923</div>
-    <div class="title">Akbar's Mint in Gorakhpur</div>
+    <div class="year">1556–1605</div>
+    <div class="title">Copper coin minted in Gorakhpur district under Akbar’s rule</div>
   </div>
 
   <div class="entry">
@@ -176,7 +183,7 @@ nav {
   <div class="entry">
     <img src="entry5.svg" alt="">
     <div class="year">1984</div>
-    <div class="title">Weaver's Quarter</div>
+    <div class="title">Weaver’s Quarter</div>
     <div class="tag">craft</div>
   </div>
 
