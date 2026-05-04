@@ -8,7 +8,97 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: #fff;
+  color: #111;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  padding: 42px 56px 80px;
+}
+
+/* top nav */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 64px;
+}
+
+.nav-left {
+  display: flex;
+  gap: 34px;
+}
+
+.nav-item {
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: -0.02em;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.nav-item:hover {
+  opacity: 0.45;
+}
+
+.about {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-style: italic;
+  cursor: pointer;
+}
+
+/* archive grid */
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 48px;
+  row-gap: 72px;
+}
+
+.entry {
+  cursor: pointer;
+}
+
+.entry img {
+  width: 100%;
+  max-width: 140px;
+  margin-bottom: 18px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.entry:hover img {
+  transform: translateY(-3px);
+  opacity: 0.72;
+}
+
+.entry-title {
+  font-size: 13px;
+  line-height: 1.45;
+  max-width: 160px;
+  font-weight: 400;
+}
+
+.entry-meta {
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: 0.5;
+  letter-spacing: 0.03em;
+}
+<!-- :root{
   --bg:#fafaf7;
   --ink:#111;
   --muted:#7d7d7d;
@@ -137,7 +227,7 @@ nav{
     grid-template-columns:repeat(2,1fr);
   }
 }
-
+-->
 </style>
 </head>
 <body>
