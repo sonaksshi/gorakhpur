@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gorakhpur archives</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#fafaf7;
+  --ink:#111;
+  --muted:#7d7d7d;
+  --line:#e8e8e2;
+  --accent:#c8401a;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Space Mono', monospace;
+  min-height:100vh;
+}
+
+/* top nav */
+
+nav{
+  width:100%;
+  padding:42px 58px 26px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.nav-left{
+  display:flex;
+  gap:42px;
+}
+
+.nav-item{
+  font-size:14px;
+  cursor:pointer;
+  position:relative;
+}
+
+.nav-item.active{
+  padding:8px 14px;
+  border:1px dashed #d8d8d1;
+}
+
+.about{
+  font-style:italic;
+  cursor:pointer;
+}
+
+/* archive grid */
+
+.archive{
+  padding:30px 58px 80px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:72px 48px;
+}
+
+/* each item */
+
+.entry{
+  cursor:pointer;
+  transition:transform .25s ease;
+}
+
+.entry:hover{
+  transform:translateY(-8px);
+}
+
+.illus{
+  width:100%;
+  height:150px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
+}
+
+.illus img{
+  max-width:150px;
+  max-height:130px;
+  object-fit:contain;
+}
+
+.meta{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.year{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+
+.title{
+  font-family:'Syne', sans-serif;
+  font-size:15px;
+  line-height:1.35;
+}
+
+.tag{
+  font-size:10px;
+  color:var(--muted);
+  font-style:italic;
+  letter-spacing:1px;
+}
+
+/* responsive */
+
+@media(max-width:1100px){
+  .grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:800px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-item">history</div>
+    <div class="nav-item active">culture</div>
+    <div class="nav-item">ecosystem</div>
+  </div>
+
+  <div class="about">about</div>
+</nav>
+
+<section class="archive">
+  <div class="grid">
+
+    <div class="entry">
+      <div class="illus">
+        <img src="Group 1.svg" alt="">
+      </div>
+      <div class="meta">
+        <div class="year">1923</div>
+        <div class="title">Akbar's Mint in Gorakhpur</div>
+        <div class="tag"></div> 
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="illus">
+        <img src="entry2.svg" alt="">
+      </div>
+      <div class="meta">
+        <div class="year">1947</div>
+        <div class="title">Rapti Riverbank</div>
+        <div class="tag">oral history</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="illus">
+        <img src="entry3.svg" alt="">
+      </div>
+      <div class="meta">
+        <div class="year">1962</div>
+        <div class="title">Temple Fair</div>
+        <div class="tag">ritual</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="illus">
+        <img src="entry4.svg" alt="">
+      </div>
+      <div class="meta">
+        <div class="year">1975</div>
+        <div class="title">Flood Season</div>
+        <div class="tag">climate</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="illus">
+        <img src="entry5.svg" alt="">
+      </div>
+      <div class="meta">
+        <div class="year">1984</div>
+        <div class="title">Weaver's Quarter</div>
+        <div class="tag">craft</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="illus">
+        <img src="entry6.svg" alt="">
+      </div>
+      <div class="meta">
+        <div class="year">1991</div>
+        <div class="title">Cinema Halls</div>
+        <div class="tag">culture</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
