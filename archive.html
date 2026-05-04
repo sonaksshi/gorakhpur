@@ -31,12 +31,12 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 90px;
+  margin-bottom: 80px;
 }
 
 .nav-left {
   display: flex;
-  gap: 23px;
+  gap: 34px;
 }
 
 .nav-item,
@@ -59,8 +59,8 @@ nav {
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 40px;
-  row-gap: 40px;
+  column-gap: 56px;
+  row-gap: 84px;
 }
 
 /* ENTRY */
@@ -71,20 +71,20 @@ nav {
 
 .entry img {
   width: 100%;
-  max-width: 80px;
-  margin-bottom: 9px;
+  max-width: 150px;
+  margin-bottom: 18px;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .entry:hover img {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   opacity: 0.72;
 }
 
 .year {
   font-size: 8px;
   opacity: 0.45;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
   letter-spacing: 0.03em;
 }
 
@@ -95,11 +95,13 @@ nav {
 }
 
 .tag {
-  margin-top: 3px;
+  margin-top: 5px;
   font-size: 8px;
   opacity: 0.35;
   font-style: italic;
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 1100px) {
   .grid {
@@ -110,10 +112,11 @@ nav {
 @media (max-width: 760px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 48px 28px;
   }
 
   body {
-    padding: 14px;
+    padding: 28px;
   }
 
   .nav-item,
