@@ -71,11 +71,17 @@ nav {
 
 .entry img {
   width: 100%;
-  max-width: 150px;
-  margin-bottom: 18px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  height: 100%;
+  object-fit: contain;
 }
-
+.image-wrap {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
 .entry:hover img {
   transform: translateY(-4px);
   opacity: 0.72;
@@ -141,20 +147,25 @@ nav {
 <div class="grid">
 
   <div class="entry">
+    <div class="image-wrap">
     <img src="Group 2.svg" alt="">
+    </div>
     <div class="year">1556–1605</div>
     <div class="title">Copper coin minted in Gorakhpur district under Akbar's rule</div>
   </div>
 
   <div class="entry">
+    <div class="image-wrap">
     <img src="gandhipic.svg" alt="">
+    </div>
     <div class="year">Feb, 1921</div>
     <div class="title">Gandhi in Gorakhpur</div>
     <div class="tag">Gandhi's visit to Gorakhpur amassed 1-2 lakh people at the Bale Miyan Maidan</div>
   </div>
 
   <div class="entry">
-    <img src="nehru.svg" alt="">
+    <div class="image-wrap">
+    <img src="nehru.svg" alt=""> </div>
     <div class="year">May, 1923</div>
     <div class="title">Nehru's address on "Ghar Wapsi" in Gorakhpur</div>
     <div class="tag">Nehru advised against close engagement with "Shuddhi Movement" to prevent dilution of the Swaraj movement</div>
@@ -162,9 +173,9 @@ nav {
 
   <div class="entry">
     <img src="entry4.svg" alt="">
-    <div class="year">1975</div>
-    <div class="title">Flood Season</div>
-    <div class="tag">climate</div>
+    <div class="year">1962</div>
+    <div class="title">Nehru's address on religious tolerance to Youth Congress in Gorakhpur </div>
+    <div class="tag">Nehru spoke of the next herculean task ahead of them of social and economic revolutions, and how religious intolerance could not find any space there</div>
   </div>
 
 </div>
