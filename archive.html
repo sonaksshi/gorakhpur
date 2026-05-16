@@ -33,9 +33,9 @@ body::after {
   height: 12px;
   background-image: url("471f698a4fcc1d7a7ad2ae0e39a8ce22 1.svg");
   background-repeat: repeat-x;
-  background-size: auto 8px;
-  filter: grayscale(100%) contrast(220%) brightness(0.1);
-  opacity: 0.55;
+  background-size: auto 12px;
+  filter: grayscale(100%) contrast(220%) brightness(0.4);
+  opacity: 0.2;
   z-index: 9999;
   pointer-events: none;
 }
@@ -56,9 +56,9 @@ html::after {
   width: 12px;
   background-image: url("vertical 1.svg");
   background-repeat: repeat-y;
-  background-size: 8px auto;
-  filter: grayscale(100%) contrast(220%) brightness(0.1); 
-  opacity: 0.55;
+  background-size: 12px auto;
+  filter: grayscale(100%) contrast(220%) brightness(0.4); 
+  opacity: 0.2;
   z-index: 9999;
   pointer-events: none;
 }
@@ -312,6 +312,24 @@ nav {
   <div class="title">Gorakhpur develops a taste for alternative ciname with the annual Cinema of Resistance Festival</div>
   <div class="tag">In 2005, Sanjay Joshi started screening alternative cinema in Gorakhpur which became an annual occurrence owing to public support. Every year when the festival is organized, mainstream media finds new ways to new ways to express its intrigue with the event.</div>
 </div>
+
+  <div class="entry" onclick="openPopup('popup7')">
+  <div class="image-wrap">
+    <img src="festival.svg" alt="">
+  </div>
+  <div class="year">2005</div>
+  <div class="title">Gorakhpur develops a taste for alternative ciname with the annual Cinema of Resistance Festival</div>
+  <div class="tag">In 2005, Sanjay Joshi started screening alternative cinema in Gorakhpur which became an annual occurrence owing to public support. Every year when the festival is organized, mainstream media finds new ways to new ways to express its intrigue with the event.</div>
+</div>
+  
+  <div class="entry" onclick="openPopup('popup8')">
+  <div class="image-wrap">
+    <img src="festival.svg" alt="">
+  </div>
+  <div class="year">1939 - 1941</div>
+  <div class="title">Treasure trove of Amrita Sher-Gil's paintings locked away life in Saraya town near Gorakhpur</div>
+  <div class="tag">Following her marriage, Amrita moved to Saraya with her husband. Priyanka Dubey from BBC travels to the town to uncover details of her life here, that the world knows very little of unlike her time in Paris, Budapest, Shimla and Lahore.</div>
+</div>
   
 </div>
 
@@ -401,11 +419,11 @@ nav {
     </div>
 <div class="popup" id="popup7">
   <div class="popup-box">
-    <div class="popup-title">An unlikely venue for Cinema of Resistanvce</div>
+    <div class="popup-title">An unlikely venue for Cinema of Resistance</div>
     <div class="popup-meta">2005 - present</div>
 
     <p>
-      1. From <p> <a href="https://timesofindia.indiatimes.com/city/mumbai/godard-goes-to-gorakhpur/articleshow/5280500.cms"> Godard goes to Gorakhpur></a></p>, <p> <a href="https://www.thehindu.com/entertainment/movies/syncretic-cinema-in-saffron-city/article17616132.ece">Syncretic cinema in saffron city</a></p>, and <p><a href="https://www.outlookindia.com/art-entertainment/a-marquee-in-gorakhpur-news-293802">A Marquee in Gorakhpur</a></p>, mainstream media has tracked Gorakhpur Film Festival's attempt at <p> <a href="https://www.firstpost.com/entertainment/taking-best-cinema-beyond-indias-metros-gorakhpur-film-festival-matters-2164503.html"> Taking the best of cinema beyond India's metros </a> </p> <p> <a href: " ">, trying to change the very idea of cinema, </a></p> and <p> <a href: "https://www.governancenow.com/views/interview/meaningful-cinema-should-be-more-accessible-common-people-filmmaker-sanjay-joshi">making it more accessible to common people</a></p>over the years.
+      1. From <a href="https://timesofindia.indiatimes.com/city/mumbai/godard-goes-to-gorakhpur/articleshow/5280500.cms"> Godard goes to Gorakhpur></a>,<a href="https://www.thehindu.com/entertainment/movies/syncretic-cinema-in-saffron-city/article17616132.ece"> Syncretic cinema in saffron city</a>, and <a href="https://www.outlookindia.com/art-entertainment/a-marquee-in-gorakhpur-news-293802">A Marquee in Gorakhpur</a>, mainstream media has tracked Gorakhpur Film Festival's attempt at  <a href="https://www.firstpost.com/entertainment/taking-best-cinema-beyond-indias-metros-gorakhpur-film-festival-matters-2164503.html"> Taking the best of cinema beyond India's metros </a><a href: "https://www.thehindu.com/entertainment/movies/the-film-festival-thats-trying-to-change-the-very-idea-of-cinema/article25970325.ece">, trying to change the very idea of cinema, </a> and<a href: "https://www.governancenow.com/views/interview/meaningful-cinema-should-be-more-accessible-common-people-filmmaker-sanjay-joshi">making it more accessible to common people</a>over the years.
 
     </p>
 
@@ -415,6 +433,22 @@ nav {
   </div>
 </div>
   </div>
+<div class="popup" id="popup8">
+  <div class="popup-box">
+    <div class="popup-title">Amrita Sher-Gil and Gorakhpur</div>
+    <div class="popup-meta">1939 - 1941</div>
+
+    <p>
+      Amrita Sher-Gil's life in Gorakhpur is a significant part of the artist's life, of which very little is known in public domain. During her two year stay there, she produced some of the most significant works of her career "Women on the Charpoy," "The Bride," "Swing," "Resting," "Ladies' Enclosure," and "Mother India.". Read about Priyanka Dubey's discoveries <a href="https://www.bbc.com/hindi/india-42887713#amp_tf=From%20%251%24s&aoh=17789227191556&referrer=https%3A%2F%2Fwww.google.com&ampshare=https%3A%2F%2Fwww.bbc.com%2Fhindi%2Findia-42887713"> here </a>a
+  
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
+  </div>
+</div>
+ 
 </div>
   <script>
 function openPopup(id) {
