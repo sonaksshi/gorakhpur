@@ -177,8 +177,66 @@ nav {
     font-size: 12px;
   }
 }
+  /* POPUP */
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.72);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.popup.active {
+  display: flex;
+}
+
+.popup-box {
+  background: #fff;
+  border: 1px solid #111;
+  padding: 28px;
+  max-width: 520px;
+  width: calc(100% - 80px);
+  max-height: 80vh;
+  overflow-y: auto;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03);
+}
+
+.popup-title {
+  font-size: 24px;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+.popup-meta {
+  font-size: 11px;
+  opacity: 0.45;
+  margin-bottom: 18px;
+}
+
+.popup-close {
+  margin-top: 24px;
+  font-size: 11px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.popup a {
+  color: #111;
+}
+
+.popup a:hover {
+  opacity: 0.5;
+}
 </style>
 </head>
+  
 <body>
 
 <nav>
@@ -193,7 +251,7 @@ nav {
 
 <div class="grid">
 
-  <div class="entry">
+  <div class="entry" onclick="openPopup('popup1')">
     <div class="image-wrap">
     <img src="Group 2.svg" alt="">
     </div>
@@ -201,16 +259,17 @@ nav {
     <div class="title">Copper coin minted in Gorakhpur district under Akbar's rule</div>
   </div>
 
-  <div class="entry">
+  <div class="entry" onclick="openPopup('popup2')">
     <div class="image-wrap">
     <img src="gandhipic.svg" alt="">
     </div>
     <div class="year">Feb, 1921</div>
     <div class="title">Gandhi in Gorakhpur</div>
-    <div class="tag">Gandhi's visit to Gorakhpur amassed 1-2 lakh people at the Bale Miyan Maidan</div>
+    <div class="tag">Gandhi’s visit to Gorakhpur drew massive 1-2 Lakh people at Bale Miyan Maidan
+      and became a key moment in local anti-colonial mobilisation.</div>
   </div>
 
-  <div class="entry">
+  <div class="entry" onclick="openPopup('popup3')">
     <div class="image-wrap">
     <img src="nehru.svg" alt=""> </div>
     <div class="year">May, 1923</div>
@@ -218,13 +277,13 @@ nav {
     <div class="tag">Nehru advised against close engagement with "Shuddhi Movement" to prevent dilution of the Swaraj movement</div>
   </div>
 
-  <div class="entry">
+  <div class="entry" onclick="openPopup('popup4')">
     <img src="entry4.svg" alt="">
     <div class="year">1962</div>
     <div class="title">Nehru's address on religious tolerance to Youth Congress in Gorakhpur </div>
     <div class="tag">Nehru spoke of the next herculean task ahead of them of social and economic revolutions, and how religious intolerance could not find any space there</div>
   </div>
-<div class="entry">
+<div class="entry onclick="openPopup('popup5')"">
   <div class="image-wrap">
     <img src="entry5.svg" alt="">
   </div>
@@ -232,7 +291,7 @@ nav {
   <div class="title">V.S. Naipul discovers his connection to Gorakhpur </div>
   <div class="tag">During his visit to Lucknow, Shivam Vij shares that "Naipauls" were Dubey's from Gorakhpur who became "Nepali" dubey as they moved to Nepal for work, further getting corrupted to "Naipaul" in the Caribbean"</div>
 </div>
-  <div class="entry">
+  <div class="entry" onclick="openPopup('popup6')">
   <div class="image-wrap">
     <img src="entry5.svg" alt="">
   </div>
@@ -242,6 +301,68 @@ nav {
 </div>
   
 </div>
+  <p>
+    
+  </p>
+<script>
+function openPopup(id) {
+  document.getElementById(id).classList.add("active");
+}
 
+function closePopup() {
+  document.querySelectorAll(".popup").forEach(popup => {
+    popup.classList.remove("active");
+  });
+}
+
+/* close when clicking outside box */
+
+document.querySelectorAll(".popup").forEach(popup => {
+  popup.addEventListener("click", function(e) {
+    if (e.target === popup) {
+      closePopup();
+    }
+  });
+});
+</script>
+  <!-- POPUPS -->
+
+<div class="popup" id="popup5">
+  <div class="popup-box">
+
+    <div class="popup-title">
+      V.S. Naipaul and Gorakhpur
+    </div>
+
+    <div class="popup-meta">
+      2009
+    </div>
+
+    <p>
+      1. Shivam Vij chronicles his time spent with V.S. Naipaul during his visit to Lucknow in 2009. He brings up Naipaul's Gorakhpur-i lineage and notes the author's rather lukewarm reaction it. 
+    </p>
+
+    <br>
+<p>
+  1. Read more about the Dubey Brahmins who lived in Pharenda - a small bazaar that lies mid-way on the road between Sunauli on the Nepal border and Gorakhpur,
+</p>
+<br>
+    <p>
+      References:
+    </p>
+
+    <p>
+      <a href="https://kafila.online/2009/10/29/five-days-with-vs-naipaul/" target="_blank">
+        Read here
+        <a href="https://kathmandupost.com/opinion/2018/08/23/the-author-and-the-ignoramus">
+      </a>
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
