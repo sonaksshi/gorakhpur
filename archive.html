@@ -30,11 +30,11 @@ body::after {
   position: fixed;
   left: 0;
   width: 100%;
-  height: 12px;
+  height: 8px;
   background-image: url("471f698a4fcc1d7a7ad2ae0e39a8ce22 1.svg");
   background-repeat: repeat-x;
   background-size: auto 12px;
-  filter: grayscale(100%) contrast(220%) brightness(0.4);
+ <!-- filter: grayscale(100%) contrast(220%) brightness(0.4); -->
   opacity: 0.55;
   z-index: 9999;
   pointer-events: none;
@@ -53,11 +53,11 @@ html::after {
   position: fixed;
   top: 0;
   height: 100%;
-  width: 12px;
+  width: 8px;
   background-image: url("vertical 1.svg");
   background-repeat: repeat-y;
   background-size: 12px auto;
-  filter: grayscale(100%) contrast(220%) brightness(0.4);
+<!--  filter: grayscale(100%) contrast(220%) brightness(0.4); -->
   opacity: 0.55;
   z-index: 9999;
   pointer-events: none;
@@ -108,12 +108,15 @@ nav {
   justify-content: center;
   padding: 0 70px;
   margin-top: 40px;
+
+  align-items: start;
 }
 
 /* ENTRY */
 
 .entry {
   cursor: pointer;
+  align-self: start;
 }
 
 .entry img {
@@ -303,7 +306,7 @@ nav {
 </div>
   <div class="entry" onclick="openPopup('popup7')">
   <div class="image-wrap">
-    <img src="entry5.svg" alt="">
+    <img src="festival.svg" alt="">
   </div>
   <div class="year">2005</div>
   <div class="title">Gorakhpur develops a taste for alternative ciname with the annual Cinema of Resistance Festival</div>
