@@ -283,7 +283,7 @@ nav {
     <div class="title">Nehru's address on religious tolerance to Youth Congress in Gorakhpur </div>
     <div class="tag">Nehru spoke of the next herculean task ahead of them of social and economic revolutions, and how religious intolerance could not find any space there</div>
   </div>
-<div class="entry onclick="openPopup('popup5')"">
+<div class="entry onclick="openPopup('popup5')">
   <div class="image-wrap">
     <img src="entry5.svg" alt="">
   </div>
@@ -304,30 +304,65 @@ nav {
   <p>
     
   </p>
-<script>
-function openPopup(id) {
-  document.getElementById(id).classList.add("active");
-}
 
-function closePopup() {
-  document.querySelectorAll(".popup").forEach(popup => {
-    popup.classList.remove("active");
-  });
-}
-
-/* close when clicking outside box */
-
-document.querySelectorAll(".popup").forEach(popup => {
-  popup.addEventListener("click", function(e) {
-    if (e.target === popup) {
-      closePopup();
-    }
-  });
-});
-</script>
   <!-- POPUPS -->
+<div class="popup" id="popup1">
+  <div class="popup-box">
+    <div class="popup-title">Akbar-era coin</div>
+    <div class="popup-meta">1556–1605</div>
 
-<div class="popup" id="popup6">
+    <p>
+      More information here.
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
+  </div>
+</div>
+  <div class="popup" id="popup2">
+  <div class="popup-box">
+    <div class="popup-title">Akbar-era coin</div>
+    <div class="popup-meta">1556–1605</div>
+
+    <p>
+      More information here.
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
+  </div>
+</div>
+  <div class="popup" id="popup3">
+  <div class="popup-box">
+    <div class="popup-title">Akbar-era coin</div>
+    <div class="popup-meta">1556–1605</div>
+
+    <p>
+      More information here.
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
+  </div>
+</div>
+  <div class="popup" id="popup4">
+  <div class="popup-box">
+    <div class="popup-title">Akbar-era coin</div>
+    <div class="popup-meta">1556–1605</div>
+
+    <p>
+      More information here.
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
+  </div>
+</div>
+<div class="popup" id="popup5">
   <div class="popup-box">
 
     <div class="popup-title">
@@ -361,8 +396,42 @@ document.querySelectorAll(".popup").forEach(popup => {
     <div class="popup-close" onclick="closePopup()">
       close
     </div>
+<div class="popup" id="popup6">
+  <div class="popup-box">
+    <div class="popup-title">Akbar-era coin</div>
+    <div class="popup-meta">1556–1605</div>
 
+    <p>
+      More information here.
+    </p>
+
+    <div class="popup-close" onclick="closePopup()">
+      close
+    </div>
   </div>
 </div>
+  </div>
+</div>
+  <script>
+function openPopup(id) {
+  document.getElementById(id).classList.add("active");
+}
+
+function closePopup() {
+  document.querySelectorAll(".popup").forEach(popup => {
+    popup.classList.remove("active");
+  });
+}
+
+/* close when clicking outside box */
+
+document.querySelectorAll(".popup").forEach(popup => {
+  popup.addEventListener("click", function(e) {
+    if (e.target === popup) {
+      closePopup();
+    }
+  });
+});
+</script>
 </body>
 </html>
