@@ -24,160 +24,170 @@ html, body {
 body {
   padding: 28px 40px 60px;
 }
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background-image: url("471f698a4fcc1d7a7ad2ae0e39a8ce22 1.svg");
-  background-repeat: repeat-x;
-  background-size: auto 12px;
-  filter: grayscale(100%) contrast(220%) brightness(0.4);
-  opacity: 0.2;
-  z-index: 9999;
-  pointer-events: none;
-}
 
-body::before {
-  top: 0;
-}
 
-body::after {
-  bottom: 0;
-}
-  html::before,
-html::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 12px;
-  background-image: url("vertical 1.svg");
-  background-repeat: repeat-y;
-  background-size: 12px auto;
-  filter: grayscale(100%) contrast(220%) brightness(0.4); 
-  opacity: 0.2;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-html::before {
-  left: 0;
-}
-
-html::after {
-  right: 0;
-}
 /* NAV */
+
+
 
 nav {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 48px;
+  align-items: flex-start;
+
+  margin-bottom: 56px;
 }
 
 .nav-left {
   display: flex;
-  gap: 23px;
+  gap: 72px;
+  padding-top: 10px;
 }
 
-.nav-item,
-.about {
-  font-family: "Playwrite BR", cursive;
-  font-size: 16px;
-  font-weight: 300;
+.nav-item {
+  font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
-  opacity: 0.9;
-  transition: opacity 0.25s ease;
+
+  transition: opacity 0.2s ease;
 }
 
-.nav-item:hover,
-.about:hover {
-  opacity: 0.45;
+.nav-item:hover {
+  opacity: 0.5;
+}
+
+.logo-wrap img {
+  width: 220px;
+  height: auto;
+  object-fit: contain;
 }
 
 /* GRID */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 220px);
-  gap: 42px 36px;
-  justify-content: center;
-  padding: 0 70px;
-  margin-top: 40px;
+
+  grid-template-columns: repeat(5, 1fr);
+
+  column-gap: 58px;
+  row-gap: 70px;
 
   align-items: start;
 }
 
 /* ENTRY */
-
 .entry {
   cursor: pointer;
-  align-self: start;
+  width: 100%;
+}
+
+.image-wrap {
+  width: 190px;
+  height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
 }
 
 .entry img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
-.image-wrap {
-  width: 140px;
-  height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-}
+
 .entry:hover img {
+  opacity: 0.7;
   transform: translateY(-4px);
-  opacity: 0.72;
 }
 
 .year {
-  font-size: 8px;
-  opacity: 0.45;
-  margin-bottom: 4px;
-  letter-spacing: 0.03em;
+  font-size: 11px;
+  opacity: 0.42;
+  margin-bottom: 8px;
 }
 
 .title {
-  font-size: 11px;
-  line-height: 1.4;
-  max-width: 150px;
+  font-size: 16px;
+  line-height: 1.35;
+
+  max-width: 220px;
+
+  margin-bottom: 10px;
 }
 
 .tag {
-  margin-top: 5px;
-  font-size: 8px;
-  opacity: 0.35;
+  font-size: 12px;
+  line-height: 1.45;
+
+  opacity: 0.34;
+
+  max-width: 220px;
+
   font-style: italic;
 }
 
 /* RESPONSIVE */
 
-@media (max-width: 1100px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 760px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 48px 28px;
-  }
+@media (max-width: 900px) {
 
   body {
-    padding: 28px;
+    padding: 24px 20px 60px;
   }
 
-  .nav-item,
-  .about {
-    font-size: 12px;
+  nav {
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .nav-left {
+    gap: 18px;
+    flex-wrap: wrap;
+    padding-top: 0;
+  }
+
+  .nav-item {
+    font-size: 14px;
+  }
+
+  .logo-wrap img {
+    width: 180px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 52px;
+  }
+
+  .entry {
+    max-width: 300px;
+  }
+
+  .image-wrap {
+    width: 180px;
+    height: 180px;
+  }
+
+  .title {
+    font-size: 20px;
+    max-width: 100%;
+  }
+
+  .tag {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .popup-box {
+    width: calc(100% - 32px);
+    padding: 22px;
   }
 }
   /* POPUP */
@@ -243,13 +253,17 @@ nav {
 <body>
 
 <nav>
+
   <div class="nav-left">
-    <div class="nav-item">history</div>
-    <div class="nav-item">culture</div>
-    <div class="nav-item">ecosystem</div>
+    <div class="nav-item">History & Culture</div>
+    <div class="nav-item">Ecosystem & Climate</div>
+    <div class="nav-item">About</div>
   </div>
 
-  <div class="about">about</div>
+  <div class="logo-wrap">
+    <img src="gorakhpur-mentioned.svg" alt="Gorakhpur Mentioned">
+  </div>
+
 </nav>
 
 <div class="grid">
