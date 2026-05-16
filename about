@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About — Gorakhpur</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: #fff;
+  color: #111;
+
+  font-family: Arial, sans-serif;
+}
+
+body {
+  padding: 28px 40px 60px;
+}
+
+/* NAV */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 90px;
+}
+
+.nav-left {
+  display: flex;
+  gap: 23px;
+}
+
+.nav-item {
+  font-family: "Inknut Antiqua", serif;
+  font-size: 13px;
+  font-weight: 300;
+
+  text-decoration: none;
+  color: #111;
+
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+}
+
+.nav-item:hover {
+  opacity: 0.45;
+}
+
+.nav-right img {
+  height: 22px;
+  width: auto;
+}
+
+/* ABOUT */
+
+.about-wrap {
+  width: 100%;
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.about-title {
+  font-family: "Inknut Antiqua", serif;
+  font-size: 24px;
+  font-weight: 300;
+
+  margin-bottom: 34px;
+}
+
+.about-text {
+  font-size: 14px;
+  line-height: 1.9;
+
+  opacity: 0.78;
+
+  max-width: 620px;
+}
+
+/* FOOTER */
+
+.site-footer {
+  width: 100vw;
+
+  margin-top: 120px;
+
+  margin-left: calc(50% - 50vw);
+}
+
+.footer-line {
+  width: 100%;
+  height: 1px;
+  background: #111;
+}
+
+.footer-content {
+  position: relative;
+
+  padding-top: 14px;
+  padding-bottom: 24px;
+}
+
+.footer-center {
+  text-align: center;
+
+  font-family: "Inknut Antiqua", serif;
+  font-size: 13px;
+  font-weight: 300;
+
+  opacity: 0.75;
+}
+
+.footer-note {
+  position: absolute;
+  right: 28px;
+  top: 8px;
+}
+
+.footer-note img {
+  height: 22px;
+  width: auto;
+
+  opacity: 0.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  body {
+    padding: 22px 18px 40px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 56px;
+  }
+
+  .nav-left {
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-item {
+    font-size: 11px;
+  }
+
+  .nav-right img {
+    height: 18px;
+  }
+
+  .about-title {
+    font-size: 20px;
+
+    margin-bottom: 28px;
+  }
+
+  .about-text {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .site-footer {
+    margin-top: 80px;
+  }
+
+  .footer-center {
+    font-size: 11px;
+  }
+
+  .footer-note {
+    right: 18px;
+    top: 10px;
+  }
+
+  .footer-note img {
+    height: 18px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+  <div class="nav-left">
+
+    <a href="archive.html" class="nav-item">
+      history & culture
+    </a>
+
+    <a href="ecosystem.html" class="nav-item">
+      ecosystem & climate
+    </a>
+
+    <a href="about.html" class="nav-item">
+      about
+    </a>
+
+  </div>
+
+  <div class="nav-right">
+    <img src="gorakhpur-nav.svg" alt="Gorakhpur">
+  </div>
+
+</nav>
+
+<div class="about-wrap">
+
+  <div class="about-title">
+    About
+  </div>
+
+  <div class="about-text">
+
+    Gorakhpur is an evolving digital archive attempting to document the many histories, cultural memories, ecological realities, and overlooked narratives of the city and its surrounding regions.
+
+    <br><br>
+
+    The project brings together fragments from newspapers, oral histories, books, photographs, personal accounts, archives, and public memory — tracing connections between politics, cinema, religion, literature, environment, migration, and everyday life.
+
+    <br><br>
+
+    This is a work in progress.
+
+  </div>
+
+</div>
+
+<footer class="site-footer">
+
+  <div class="footer-line"></div>
+
+  <div class="footer-content">
+
+    <div class="footer-center">
+      Happy Birthday, Siddhant
+    </div>
+
+    <div class="footer-note">
+      <img src="workinprogress.png" alt="Work in progress">
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
