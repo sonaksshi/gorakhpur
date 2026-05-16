@@ -12,100 +12,109 @@
       padding: 0;
       box-sizing: border-box;
     }
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background: #ffffff;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
 
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
-      background: #ffffff;
-      font-family: sans-serif;
-      overflow-x: hidden;
-    }
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-    }
+  min-height: 100vh;
 
-    /* ENTIRE LANDING CLICKABLE */
+  padding: 40px 24px;
+}
 
-    .landing-link {
-      text-decoration: none;
-      color: inherit;
+.landing-center {
+  display: flex;
+  flex-direction: column;
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-      gap: 42px;
-      width: 100%;
+  gap: 46px;
 
-      cursor: pointer;
+  width: 100%;
+}
 
-      transition:
-        opacity 0.25s ease,
-        transform 0.25s ease;
-    }
+.text-block {
+  display: flex;
+  justify-content: center;
 
-    .landing-link:hover {
-      opacity: 0.82;
-      transform: translateY(-3px);
-    }
+  width: 100%;
+}
 
-    .text-block {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
+.text-block img {
+  display: block;
 
-    .text-block img {
-      display: block;
-      width: 100%;
-      max-width: 560px;
-      height: auto;
-      object-fit: contain;
-    }
+  width: 100%;
+  max-width: 560px;
 
-    /* MOBILE */
+  height: auto;
+  object-fit: contain;
+}
 
-    @media (max-width: 760px) {
+.clickable {
+  cursor: pointer;
 
-      body {
-        padding: 32px 18px;
-      }
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
 
-      .landing-link {
-        gap: 54px;
-      }
+.clickable:hover {
+  opacity: 0.78;
+  transform: translateY(-3px);
+}
 
-      .text-block img {
-        max-width: 100%;
-      }
-    }
+/* MOBILE */
 
+@media (max-width: 760px) {
+
+  body {
+    padding: 24px 18px;
+  }
+
+  .landing-center {
+    gap: 54px;
+
+    min-height: 100vh;
+    justify-content: center;
+  }
+
+  .text-block img {
+    max-width: 100%;
+  }
+}
   </style>
 </head>
 
 <body>
 
-  <a href="archive.html" class="landing-link">
+  <div class="landing-center">
 
-    <div class="text-block">
-      <img src="GP_E.svg" alt="Welcome to Gorakhpur in English">
+    <div class="text-block clickable"
+         onclick="window.location.href='archive.html'">
+      <img src="GP_E.svg" alt="Welcome in English">
     </div>
 
-    <div class="text-block">
-      <img src="GP_H.svg" alt="Welcome to Gorakhpur in Hindi">
+    <div class="text-block clickable"
+         onclick="window.location.href='archive.html'">
+      <img src="GP_H.svg" alt="Welcome in Hindi">
     </div>
 
-    <div class="text-block">
-      <img src="GP_U.svg" alt="Welcome to Gorakhpur in Urdu">
+    <div class="text-block clickable"
+         onclick="window.location.href='archive.html'">
+      <img src="GP_U.svg" alt="Welcome in Urdu">
     </div>
 
-  </a>
+  </div>
 
 </body>
 </html>
