@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Gorakhpur</title>
 
   <style>
@@ -12,192 +13,99 @@
       box-sizing: border-box;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       background: #ffffff;
-      overflow: hidden;
       font-family: sans-serif;
+      overflow-x: hidden;
     }
 
     body {
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 40px 24px;
     }
 
-    .landing-center {
+    /* ENTIRE LANDING CLICKABLE */
+
+    .landing-link {
+      text-decoration: none;
+      color: inherit;
+
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
+
       gap: 42px;
+      width: 100%;
+
+      cursor: pointer;
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .landing-link:hover {
+      opacity: 0.82;
+      transform: translateY(-3px);
+    }
+
+    .text-block {
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     .text-block img {
       display: block;
-      max-width: 520px;
-      width: auto;
+      width: 100%;
+      max-width: 560px;
       height: auto;
+      object-fit: contain;
     }
 
-    .clickable {
-      cursor: pointer;
-      transition: transform 0.25s ease, opacity 0.25s ease;
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+
+      body {
+        padding: 32px 18px;
+      }
+
+      .landing-link {
+        gap: 54px;
+      }
+
+      .text-block img {
+        max-width: 100%;
+      }
     }
 
-    .clickable:hover {
-      transform: translateY(-4px);
-      opacity: 0.75;
-    }
-    body::before,
-body::after {
-  content: "";
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background-image: url("471f698a4fcc1d7a7ad2ae0e39a8ce22 1.svg");
-  background-repeat: repeat-x;
-  background-size: auto 12px;
-  filter: grayscale(100%) contrast(180%) brightness(0.45);
-  opacity: 0.35;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-body::before {
-  top: 0;
-}
-
-body::after {
-  bottom: 0;
-}
-
-html::before,
-html::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 12px;
-  background-image: url("vertical 1.svg");
-  background-repeat: repeat-y;
-  background-size: 12px auto;
-  filter: grayscale(100%) contrast(180%) brightness(0.45);
-  opacity: 0.35;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-/* MOBILE */
-
-@media (max-width: 760px) {
-
-  body {
-    padding: 22px 18px 40px;
-  }
-
-  nav {
-    margin-bottom: 34px;
-  }
-
-  .nav-left {
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .nav-item,
-  .about {
-    font-size: 11px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 42px;
-    padding: 0;
-    margin-top: 10px;
-    justify-items: center;
-  }
-
-  .entry {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .image-wrap {
-    width: 100%;
-    height: 180px;
-    margin-bottom: 10px;
-  }
-
-  .entry img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .year {
-    font-size: 10px;
-  }
-
-  .title {
-    font-size: 20px;
-    line-height: 1.35;
-    max-width: 100%;
-  }
-
-  .tag {
-    font-size: 13px;
-    line-height: 1.5;
-    margin-top: 8px;
-    opacity: 0.5;
-  }
-
-  .popup-box {
-    width: calc(100% - 32px);
-    padding: 22px;
-    max-height: 85vh;
-  }
-
-  .popup-title {
-    font-size: 22px;
-    line-height: 1.25;
-  }
-
-  .popup-meta {
-    font-size: 11px;
-  }
-
-  .popup {
-    align-items: flex-start;
-    padding-top: 40px;
-  }
-}
   </style>
 </head>
+
 <body>
 
-  <div class="landing-center">
+  <a href="archive.html" class="landing-link">
 
     <div class="text-block">
-      <img src="GP_E.svg" alt="">
+      <img src="GP_E.svg" alt="Welcome to Gorakhpur in English">
     </div>
 
     <div class="text-block">
-      <img src="GP_H.svg" alt="">
+      <img src="GP_H.svg" alt="Welcome to Gorakhpur in Hindi">
     </div>
 
-    <div class="text-block clickable" id="portal-btn">
-      <img src="GP_U.svg" alt="">
+    <div class="text-block">
+      <img src="GP_U.svg" alt="Welcome to Gorakhpur in Urdu">
     </div>
 
-  </div>
-
-  <script>
-    document.getElementById("portal-btn").addEventListener("click", function () {
-    window.location.href = "archive.html";
-    });
-  </script>
+  </a>
 
 </body>
 </html>
