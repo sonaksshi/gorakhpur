@@ -255,9 +255,14 @@ nav {
 
 /* FOOTER */
 
+/* FOOTER */
+
 .site-footer {
+  width: 100vw;
   margin-top: 120px;
-  padding-bottom: 32px;
+
+  /* cancels body padding */
+  margin-left: calc(50% - 50vw);
 }
 
 .footer-line {
@@ -269,10 +274,27 @@ nav {
 
 .footer-text {
   text-align: center;
+
   font-family: "Inknut Antiqua", serif;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 13px;
+  font-weight: 300;
+
   opacity: 0.75;
+  padding-bottom: 24px;
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  .site-footer {
+    margin-top: 80px;
+  }
+
+  .footer-text {
+    font-size: 11px;
+    padding-bottom: 20px;
+  }
 }
 
 /* MOBILE */
